@@ -1,0 +1,26 @@
+Remove duplicate elements from sorted Array
+Input:
+N = 5
+Array = {2, 2, 2, 2, 2}
+Output: {2}
+----------------------------
+
+
+class Solution {
+    int remove_duplicate(int A[],int N){
+        // code here
+        int index=1;
+        for (int i=1;i<N;i++)
+        {
+                if(A[i-1]!=A[i])
+                {
+                    A[index]=A[i];
+                    index++;
+                }
+            
+        }
+       
+            
+    return index;
+    }
+}

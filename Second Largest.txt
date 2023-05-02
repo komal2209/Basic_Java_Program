@@ -1,0 +1,64 @@
+Second Largest
+Input: 
+N = 6
+Arr[] = {12, 35, 1, 10, 34, 1}
+Output: 34
+Explanation: The largest element of the 
+array is 35 and the second largest element
+is 34.
+================================================
+solution 1
+-----------
+
+
+class Solution {
+    int print2largest(int arr[], int n) {
+        // code here
+        int largest=0;
+        int second=-1;
+        
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]>largest)
+            {
+               largest=arr[i];
+            }
+        }
+         for(int i=0;i<n;i++)
+        {
+             if(arr[i]>second && arr[i]!=largest)
+            {
+               second=arr[i];
+            }
+        }
+       return second; 
+        
+    }
+}
+
+
+solution 2
+----------------
+class Solution {
+    int print2largest(int arr[], int n) {
+        // code here
+        int largest=0;
+        int second=-1;
+        
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]>arr[largest])
+            {
+                second=largest;
+               largest=i;
+            }
+       
+            else if(arr[i]>arr[second] && arr[i]!=arr[largest])
+            {
+               second=arr[i];
+            }
+        }
+       return second; 
+        
+    }
+}
