@@ -1,0 +1,33 @@
+Rotate Array
+Example 1:
+
+Input:
+N = 5, D = 2
+arr[] = {1,2,3,4,5}
+Output: 3 4 5 1 2
+---------------------------Timecomplexity(o(n)) and space(o(1))------------------
+
+
+class Solution
+{
+    //Function to rotate an array by d elements in counter-clockwise direction. 
+    static void rotateArr(int arr[], int d, int n)
+    {  
+        d=d%n;
+        // add your code here
+        reverse(arr,0,d-1);
+        reverse(arr,d,n-1);
+        reverse(arr,0,n-1);
+    }
+  static void reverse(int arr[],int low,int high)
+    {
+        while(low<high)
+        {
+            int temp=arr[low];
+            arr[low]=arr[high];
+            arr[high]=temp;
+            low++;
+            high--;
+        }
+    }
+}
