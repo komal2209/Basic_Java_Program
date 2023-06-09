@@ -1,0 +1,91 @@
+Max Sum Subarray of size K
+Example 1:
+
+Input:
+N = 4, K = 2
+Arr = [100, 200, 300, 400]
+Output:
+700
+=====================================================NAIVE SOLUTION===============================
+Time Complexity=o(n*K)
+Space Complexity=o(1)
+
+class Solution{
+    static long maximumSumSubarray(int K, ArrayList<Integer> Arr,int N){
+        
+        long max_sum=Long.MIN_VALUE;
+        for(int i=0;i<N-K+1;i++)
+        {
+          long win_sum=0;
+
+            for(int j=i;j<i+K;j++)
+            {
+             win_sum+=Arr.get(j);
+             max_sum=Math.max(win_sum,max_sum);
+              
+            }
+        }
+        return max_sum;
+
+        
+    }
+}
+
+==========================================================================================efficient solution=======================
+Time Complexity=o(n)
+Space Complexity=o(1)
+
+class Solution{
+    static long maximumSumSubarray(int K, ArrayList<Integer> Arr,int N){
+        
+        long max_sum=Long.MIN_VALUE;
+        long win_sum=0;
+        for(int i=0;i<K;i++)
+        {
+              win_sum+=Arr.get(i);
+              max_sum=win_sum;
+         }
+ 
+            for(int j=K;j<N;j++)
+            {
+             win_sum+=Arr.get(j)-Arr.get(j-K);
+             max_sum=Math.max(win_sum,max_sum);
+              
+            }
+        
+        return max_sum;
+
+        
+    }
+}
+
+=============================================================================Optimal solution ============================================
+Time Complexity=o(n)
+Space Complexity=o(1)
+
+
+
+class Solution{
+    static long maximumSumSubarray(int K, ArrayList<Integer> Arr,int N){
+        // code here
+        
+        int i=0,j=0;
+        long sum=0;
+        long max_value=Long.MIN_VALUE;
+        for(j=0;j<N;j++)
+        {
+            if(j-i+1==K)
+            {
+                sum+=Arr.get(j);
+                max_value=Math.max(max_value,sum);
+                sum=sum-Arr.get(i);
+                 i++;
+
+            }
+            else{
+                sum+=Arr.get(j);
+            }
+        }
+        return max_value;
+    }
+}
