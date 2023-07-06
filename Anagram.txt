@@ -1,0 +1,77 @@
+Anagram
+
+Example 1:
+Input:a = geeksforgeeks, b = forgeeksgeeks
+Output: YES
+Explanation: Both the string have same characters with
+        same frequency. So, both are anagrams.
+
+============================================================================
+time complexity=O(n logn)
+space timecomplexity=O(length of a and b)
+
+class Solution
+{    
+    //Function is to check whether two strings are anagram of each other or not.
+    public static boolean isAnagram(String a,String b)
+    {
+        
+        // Your code here
+        
+        if(a.length()!=b.length())
+        return false; 
+
+        char[] chone=a.toCharArray();
+        char[] chtwo=b.toCharArray();
+        Arrays.sort(chone);
+        Arrays.sort(chtwo);
+     
+           for(int i=0;i<chone.length;i++)
+           {
+               if(chone[i]!=chtwo[i])
+               return false;
+           }
+      
+       
+        return true;
+    }
+}
+
+
+
+
+============================================================================================================================\
+time complexity=O(N)
+Space complexity=O(1)	
+class Solution
+{    
+    //Function is to check whether two strings are anagram of each other or not.
+    public static boolean isAnagram(String a,String b)
+    {
+        
+        // Your code here
+        int[] str=new int[26];
+        if(a.length()!=b.length())
+        return false;
+        for(int i=0;i<a.length();i++)
+        {
+            str[a.charAt(i)-'a']+=1;
+        }
+      
+ 
+        for(int i=0;i<b.length();i++)
+        {
+            str[b.charAt(i)-'a']-=1;
+        }
+        
+        for(int i=0;i<str.length;i++)
+        {
+          if( str[i]!=0)
+          {
+              return false;
+          }
+        }
+      
+        return true;
+    }
+}
