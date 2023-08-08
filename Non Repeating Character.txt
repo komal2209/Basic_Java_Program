@@ -1,0 +1,57 @@
+Non Repeating Character
+Given a string S consisting of lowercase Latin Letters. Return the first non-repeating character in S. If there is no non-repeating character, return '$'.
+
+Time complexity=o(n^2)
+Space complexity=o(1)
+
+class Solution
+{
+    //Function to find the first non-repeating character in a string.
+    static char nonrepeatingCharacter(String S)
+    {
+       int n=S.length();
+      for(int i=0;i<n;i++)
+      {  
+          int j;
+        for(j=0;j<n;j++)
+        {
+          if(j!=i && S.charAt(i)==S.charAt(j))
+             break;
+        }
+        if(j==n)
+        return (S.charAt(i));
+    }
+        
+        return '$';
+    }
+}
+
+
+=======================================================efficient approach====================================================
+Time complexity=o(n)
+Space complexity=o(256)
+
+
+class Solution
+{
+    //Function to find the first non-repeating character in a string.
+    static char nonrepeatingCharacter(String S)
+    { 
+        //Your code here
+        int[] Count=new int[256];
+        
+        for(int i=0;i<S.length();i++)
+        {
+            Count[S.charAt(i)]++;
+        }
+        for(int i=0;i<S.length();i++)
+        {
+          if(Count[S.charAt(i)]==1)
+          {
+          return (S.charAt(i));
+          }
+        }
+        
+        return '$';
+    }
+}

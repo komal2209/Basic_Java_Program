@@ -1,0 +1,89 @@
+Kadane's Algorithm
+Given an array Arr[] of N integers. Find the contiguous sub-array(containing at least one number) which has the maximum sum and return its sum.
+
+Example 1:
+
+Input:
+N = 5
+Arr[] = {1,2,3,-2,5}
+Output:
+9
+Explanation:
+Max subarray sum is 9
+of elements (1, 2, 3, -2, 5) which 
+is a contiguous subarray.
+================================================
+time complexity=O(n^2)
+space complexity=O(1)
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+      int n=nums.length;
+      int res=Integer.MIN_VALUE;
+       int sum=0;
+
+    for(int i=0;i<n;i++)
+    {    sum=0;
+    for(int j=i;j<n;j++)
+    {
+       sum+=nums[j];
+       if(res<sum)
+       res=sum;
+     }  
+    }
+     return res;  
+    }
+}
+
+===============================================================
+time complexity=O(n)
+space complexity=O(1)
+
+Other approach
+class Solution{
+
+    // arr: input array
+    // n: size of array
+    //Function to find the sum of contiguous subarray with maximum sum.
+    long maxSubarraySum(int arr[], int n){
+        
+        // Your code here
+        int maxsum=0;int res=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++)
+        {
+            maxsum=Math.max(maxsum+arr[i],arr[i]);
+            res=Math.max(res,maxsum);
+        }
+        return res;
+    }
+    
+}
+==============================================================
+time complexity=O(n)
+space complexity=O(1)
+
+class Solution{
+
+    // arr: input array
+    // n: size of array
+    //Function to find the sum of contiguous subarray with maximum sum.
+    long maxSubarraySum(int arr[], int n){
+        
+        // Your code here
+        
+        long sum=0;
+        long res=arr[0];
+        for(int i=0;i<n;i++)
+        {
+            sum=sum+arr[i];
+            res=Math.max(res,sum);
+            if(sum<0)
+            {
+                sum=0;
+            }
+        }
+       return res;
+        
+    }
+    
+}

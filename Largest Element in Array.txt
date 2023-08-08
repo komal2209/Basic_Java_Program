@@ -1,0 +1,51 @@
+Largest Element in Array
+
+Given an array A[] of size n. The task is to find the largest element in it.
+ 
+
+Example 1:
+
+Input:
+n = 5
+A[] = {1, 8, 7, 56, 90}
+Output:
+90
+Explanation:
+The largest element of given array is 90.
+----------------------------------------------------------------------
+Time Complexity:-O(nlogn)
+Space Complxity:-O(1)
+
+
+class Compute {
+    
+    public int largest(int arr[], int n)
+    {
+        Arrays.sort(arr);
+        return arr[n-1];
+        
+    }
+}
+
+
+-----------------------------------------------------------------------------
+Time Complexity:-O(n)
+Space Complxity:-O(1)
+
+class Compute {
+    public int largest(int arr[], int n)
+    {
+       int res=0;
+    int max=arr[0];
+        for(int i=0;i<n;i++)
+        {
+           if(arr[i]>max)
+           {
+               max=arr[i];
+           }
+           res=Math.max(res,max);
+        }
+        
+        return res;
+    }
+}

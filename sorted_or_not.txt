@@ -1,0 +1,29 @@
+Given an array arr[] of size N, check if it is sorted in non-decreasing order or not. 
+
+Example 1:
+
+Input:
+N = 5
+arr[] = {10, 20, 30, 40, 50}
+Output: 1
+Explanation: The given array is sorted.
+
+-----------------------------------------------------------------------------
+Time Complexity:-O(n)
+Space Complxity:-O(1)
+
+class Solution {
+    boolean arraySortedOrNot(int[] arr, int n) {
+      if(n==0||n==1)
+       return true;
+        // code here
+        for(int i=n-1;i>0;i--)
+        {
+            if(arr[i]<arr[i-1])
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
