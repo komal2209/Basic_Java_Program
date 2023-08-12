@@ -1,0 +1,49 @@
+Maximum Occuring Character
+Given a string str of lowercase alphabets. The task is to find the maximum occurring character in the string str. If more than one character occurs the maximum number of time then print the lexicographically smaller character.
+
+Example 1:
+Input:
+str = testsample
+Output: e
+Explanation: e is the character which
+is having the highest frequency.
+
+Example 2:
+Input:
+str = output
+Output: t
+Explanation:  t and u are the characters
+with the same frequency, but t is
+lexicographically smaller.
+-------------------------------------------------------------------------------------------------------
+Time complexity=O(n)
+space complexity=O(26) which is nearly constant.
+class Solution
+{
+    //Function to find the maximum occurring character in a string.
+    public static char getMaxOccuringChar(String line)
+    {
+        // Your code here
+        
+        int n=line.length();
+        int arr[]=new int[256];
+        int res=0;
+        int temp=-1;
+        for(int i=0;i<n;i++)
+        {
+            arr[line.charAt(i)]++;
+        }
+        
+        for(int i=0;i<256;i++)
+        {
+            if(arr[i]>res)
+            {
+                res=arr[i];
+                temp=i;
+            }
+        }
+      
+        return (char)temp;
+    }
+    
+}
