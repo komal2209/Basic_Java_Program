@@ -1,0 +1,109 @@
+First negative integer in every window of size k
+Given an array A[] of size N and a positive integer K, find the first negative integer for each and every window(contiguous subarray) of size K.
+
+Example 1:
+Input : 
+N = 5
+A[] = {-8, 2, 3, -6, 10}
+K = 2
+Output : 
+-8 0 -6 -6
+Explanation :
+First negative integer for each window of size k
+{-8, 2} = -8
+{2, 3} = 0 (does not contain a negative integer)
+{3, -6} = -6
+{-6, 10} = -6
+ 
+Example 2:
+Input : 
+N = 8
+A[] = {12, -1, -7, 8, -15, 30, 16, 28}
+K = 3
+Output :
+-1 -1 -7 -15 -15 0 
+--------------------------------------------------------------------------------------------------------------------------------
+Time Complexity=O((N-K+1)*K)
+Space complexity=O(N-K+1)
+class Compute {
+
+    public long[] printFirstNegativeInteger(long A[], int N, int K) {
+        long count[] = new long[N - K + 1];
+        
+        int index = 0;
+        for(int i=0;i<=N-K;i++)
+        {  
+            boolean flag=false;
+                for(int j=i;j<i+K;j++)
+                {
+                    if(A[j]<0)
+                    {
+                        count[index++]=A[j];
+                        flag=true;
+                        break;
+                    }
+                }
+                if(flag==false)
+                {
+                    count[index++]=0;
+
+                }
+        }
+
+        return count;
+    }
+
+}
+
+------------------------------------------------------------------------------------------------------------------------------------
+Time Complexity=O(N)
+Space complexity=O(N-K+1)
+
+class Compute {
+
+    public long[] printFirstNegativeInteger(long A[], int N, int K) {
+        long count[] = new long[N - K + 1];
+        ArrayList<Integer> set=new ArrayList<Integer>();
+       int index = 0;
+       int i=0;
+       int j=0;
+        
+       while(j<N)
+       {
+           if(A[j]<0)
+           {
+               set.add((int) A[j]);
+           }
+           
+           if(j-i+1<K)
+           {
+               j++;
+           }
+           else if(j-i+1==K)
+           {
+               
+               if(set.isEmpty())
+               {
+                   count[index++]=0;
+               }
+               else if(!set.isEmpty())
+               {
+                    count[index++]=set.get(0);
+                    if(A[i]==set.get(0))
+                    {
+                        set.remove(0);
+                    }
+               }
+               
+            i++;
+            j++;
+           
+           }
+          
+       }
+       
+
+        return count;
+    }
+
+}

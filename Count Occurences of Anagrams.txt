@@ -1,0 +1,112 @@
+Count Occurences of Anagrams
+
+Given a word pat and a text txt. Return the count of the occurrences of anagrams of the word in the text.
+
+Example 1:
+Input:
+txt = forxxorfxdofr
+pat = for
+Output: 3
+Explanation: for, orf and ofr appears
+in the txt, hence answer is 3.
+
+Example 2:
+Input:
+txt = aabaabaa
+pat = aaba
+Output: 4
+Explanation: aaba is present 4 times
+in txt.
+----------------------------------------------------------NAIVE APPROACH------------------------------------
+Time complexity=O((N-M+1)*M)
+Space complexity=O(256)
+M=PATTERN LENGTH
+N=TEXT LENGTH
+
+class Solution {
+
+    int search(String pat, String txt) {
+        int n=txt.length();
+        int m=pat.length();
+        int count=0;
+        // code here
+        for(int i=0;i<=n-m;i++)
+        {
+            boolean flag=areAnagram(pat,txt,i);
+            if(flag==true)
+            count++;
+        }
+        return count;
+    }
+    
+
+ boolean areAnagram(String pat, String txt,int i)
+    {
+        int ch[]=new int[256];
+        for(int z=0;z<pat.length();z++)
+        {
+            ch[pat.charAt(z)]++;
+             ch[txt.charAt(i+z)]--;
+        }
+        
+         for(int j=0;j<256;j++)
+        {
+            if(ch[j]!=0)
+            return false;
+            
+        }
+        return true;
+    }
+}
+
+
+----------------------------------------efficient approach---------------------------------------------
+Time Complexity = O(N*CHAR)
+Space Complexity=O(256)
+
+class Solution {
+
+    int search(String pat, String txt)
+    {
+        int n=txt.length();
+        int m=pat.length();
+        int ct[]=new int[256];
+        int cp[]=new int[256];
+        int count=0;
+       
+       for(int i=0;i<m;i++)
+       {
+           ct[txt.charAt(i)]++;
+           cp[pat.charAt(i)]++;
+       }
+       
+       for(int i=m;i<=n;i++)
+       {
+           boolean flag=areAnagram(ct,cp);
+           if(flag==true)
+           {
+           count++;
+           }
+           if(i<n)
+           {
+           ct[txt.charAt(i)]++;
+           ct[txt.charAt(i-m)]--;
+           }
+           
+       }
+       
+  return count;
+   }
+   
+   boolean areAnagram(int ct[],int cp[])
+   {
+
+       for(int j=0;j<256;j++)
+       {
+          if(ct[j]!=cp[j])
+          return false;
+       }
+       return true;
+   }
+}
+

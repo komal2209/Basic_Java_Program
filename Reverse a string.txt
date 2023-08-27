@@ -4,32 +4,51 @@ You are given a string S, the task is to reverse the string using stack.
 Example 1:
 Input: S="GeeksforGeeks"
 Output: skeeGrofskeeG
-========================================Efficient Approach============================
+=================================================================================================
 Time Complexity=O(n)
-Space Complexity=O(1)
+Space Complexity=O(n)
 
+class Solution 
+{
+    //Function to reverse words in a given string.
+   
+    String reverseWords(String S)
+    {
+        // code here 
 
-class Solution {
-    
-    public String reverse(String S){
-        //code here
-        
-       int start=0;
-       int end=S.length()-1;
-       char[] ch=S.toCharArray();
-       while(start<=end)
-       {
-           char temp=ch[start];
-           ch[start]=ch[end];
-           ch[end]=temp;
-            start++;
-            end--;
-       }
+     int start=0;
+        int end=0;
+        int n=S.length();
+        char ch[]=S.toCharArray();
+        for(end=0;end<n;end++)
+        {
+              if(ch[end]=='.')
+              {
+                  reverse(ch,start,end-1);
+                  start=end+1;
+              }
+        }
       
-      String str= new String(ch);  
-      return str;
+            reverse(ch,start,n-1);
+            reverse(ch,0,n-1);
+            String str=new String(ch);
+            
+            return str;
     }
-
+    
+    
+      void reverse(char ch[],int low, int high)
+      {
+          while(low<=high)
+          {
+          char temp=ch[low];
+          ch[low]=ch[high];
+          ch[high]=temp;
+          low++;
+          high--;
+          }
+      }
+      
 }
 
 ========================================Efficient Approach============================

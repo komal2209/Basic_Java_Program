@@ -1,0 +1,90 @@
+Search Pattern (Rabin-Karp Algorithm)
+Given two strings, one is a text string and other is a pattern string. The task is to print the indexes of all the occurences of pattern string in the text string. For printing, Starting Index of a string should be taken as 1.
+
+Example 1:
+Input:
+S = "batmanandrobinarebat", pat = "bat"
+Output: 1 18
+Explanation: The string "bat" occurs twice
+in S, one starts are index 1 and the other
+at index 18. 
+
+Example 2:
+Input: 
+S = "abesdu", pat = "edu"
+Output: -1
+Explanation: There's not substring "edu"
+present in S.
+====================================================================================
+Time complexity(worst case)=O((n-m+1)*m)
+[example: 
+Input:S = "aaaaaa", pat = "aaa"
+Output: 0 1 2 3]
+
+Time complexity=O(n)
+space complexity=O(m)
+
+
+class Solution
+{  
+    ArrayList<Integer> search(String pat, String S)
+    {
+        // your code here
+          ArrayList<Integer> count=new ArrayList<Integer>();
+        int d=256;
+        int q=101;
+        int m=pat.length();
+        int n=S.length();
+        int p=0;
+        int t=0;
+        int h=1;
+
+//compute d^[m-1]
+         for(int i=1;i<=m-1;i++)
+         {
+             h=(h*d)%q;
+         }
+//compute hash value of (character of the string and pattern);
+         
+         for(int i=0;i<m;i++)
+         {
+            p=(p*d+pat.charAt(i))%q;
+            t=(t*d+S.charAt(i))%q;
+         }
+//matching that pattern is existing in string or not, for that we first match the hash value of both pattern as well as string if it is match then only the we start matching character one by one.         
+         for(int i=0;i<=n-m;i++)
+         {
+             boolean flag=false;
+             if(p==t)
+             {
+                 flag=true;
+                 for(int j=0;j<m;j++)
+                 {
+                     if(S.charAt(i+j)!=pat.charAt(j))
+                     {
+                         flag=false;
+                         break;
+                     }
+                 }
+                 
+                  if(flag==true)
+                     count.add(i+1);
+             }
+                
+                 
+                 if(i<n-m)
+                 {
+                     t=((d*(t-S.charAt(i)*h))+S.charAt(i+m))%q; 
+                 }
+                 if(t<0)
+                 {
+                     t=(t+q);
+                 }
+         }
+         
+    if(count.size()==0)
+        count.add(-1);
+    return count;
+         
+    }
+}

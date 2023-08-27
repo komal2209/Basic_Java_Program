@@ -1,0 +1,91 @@
+Meta Strings
+Given two strings consisting of lowercase english alphabets, the task is to check whether these strings are meta strings or not. Meta strings are the strings which can be made equal by exactly one swap in any of the strings. Equal string are not considered here as Meta strings.
+
+Example 1:
+Input:
+S1 = "geeks", S2 = "keegs"
+Output: 1
+Explanation: We can swap the 0th and 3rd
+character of S2 to make it equal to S1.
+
+Example 2:
+Input: 
+S1 = "geeks", S2 = "geeks"
+Output: 0
+Explanation: Equal strings are not considered
+Meta strings.
+==================================================================================================================
+Time Complexity=O(n)
+space complexity=O(26)
+
+class Solution 
+{ 
+    boolean metaStrings(String S1, String S2) 
+    { 
+        int freq[]=new int[26];
+        // code here
+        if(S1.equals(S2))
+        return false;
+        
+        if(S1.length()!=S2.length())
+        return false;
+        
+        for(int i=0;i<S1.length();i++)
+        {
+            freq[S1.charAt(i)-'a']++;
+            freq[S2.charAt(i)-'a']--;
+        }
+        
+        for(int i=0;i<26;i++)
+        {
+           if(freq[i]!=0)
+           return false;
+           
+        }
+        
+        int count=0;
+         for(int i=0;i<S1.length();i++)
+        {
+           if(S1.charAt(i)!=S2.charAt(i))
+           count++;
+        }
+        if(count==2)
+        return true;
+        else
+        return false;
+    }
+} 
+
+
+======================================================================================================================================
+Time Complexity=O(n)
+space complexity=O(n)
+class Solution 
+{ 
+    boolean metaStrings(String S1, String S2) 
+    { 
+        int i=0;
+        int j=S1.length()-1;
+        // code here
+        if(S1.equals(S2))
+        return false;
+        
+        if(S1.length()!=S2.length())
+        return false;
+      
+      while(S1.charAt(i)==S2.charAt(i)) i++;
+      while(S1.charAt(j)==S2.charAt(j)) j--;
+      
+      char arr[]=S1.toCharArray();
+      char temp=arr[i];
+      arr[i]=arr[j];
+      arr[j]=temp;
+      
+      String str=new String(arr);
+      
+      if(str.equals(S2))
+        return true;
+        else
+        return false;
+    }
+} 

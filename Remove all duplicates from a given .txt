@@ -1,0 +1,64 @@
+Remove all duplicates from a given string 
+  
+Given a string Str which may contains lowercase and uppercase chracters.
+The task is to remove all duplicate characters from the string and find the resultant string. 
+The order of remaining characters in the output should be same as in the original string.
+
+Example 1:
+Input:
+Str = geeksforgeeks
+Output: geksfor
+Explanation: After removing duplicate
+characters such as e, k, g, s, we have
+string as "geksfor".
+
+Example 2:
+Input:
+Str = HappyNewYear
+Output: HapyNewYr
+Explanation: After removing duplicate
+characters such as p, e, a, we have
+string as "HapyNewYr".
+---------------------------------------
+Expected Time Complexity: O(n^2)
+Expected Auxiliary Space: O(1) to O(n)
+
+class Solution {
+    String removeDuplicates(String str) {
+        // code here
+        
+        int n=str.length();
+        String result="";
+        for(int i=0;i<n;i++)
+        {
+            if(result.indexOf(str.charAt(i))==-1)
+            {
+                result=result+str.charAt(i);
+            }
+        }
+        return result;
+    }
+}
+
+------------------------------------------------------------------------------
+Time Complexity: O(n)
+Auxiliary Space: O(1) to O(n)
+
+class Solution {
+    String removeDuplicates(String str) {
+        // code here
+        
+        int n=str.length();
+        String result="";
+        HashSet<Character> set=new HashSet<Character>();
+        for(int i=0;i<n;i++) ============================================>O(n) Time complexity
+        {
+            if(!set.contains(str.charAt(i)))
+            {
+                set.add(str.charAt(i));
+                result+=str.charAt(i);
+            }
+        }
+        return result;
+    }
+}

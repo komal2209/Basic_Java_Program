@@ -1,0 +1,79 @@
+Length of Last word
+Given a string S consisting of upper/lower-case alphabets and empty space characters ‘ ‘. The string may contain spaces at the end. You will have return the length of last word which consists of alphabets only.
+
+Example 1:
+Input:
+S = "Geeks for Geeks"
+Output: 5
+Explanation: The last word is "Geeks"  of length 5.
+
+Example 2:
+Input:
+S = "Start Coding Here "
+Output: 4
+Explanation: The last word is "Here" of length 4.
+---------------------------------------------------------------------------------------------------
+Time complexity=O(n) (trimming the string) + O(1) (retrieving the length) + O(n) (loop iteration) = O(n)
+Space Complexity=O(n)
+class Solution 
+{ 
+    int findLength(String s) 
+    {  s=s.trim();==========================>O(n)(Time complexity) and O(n)(Space Complexity)
+        // code here
+        int n=s.length();===================>O(1)
+        int res=0;
+        for(int i=n-1;i>=0;i--)===============>O(n)
+        {
+            if(s.charAt(i)!=' ')
+            {
+              res++;
+            }
+            else if(s.charAt(i)==' ')
+            {
+                 break;
+                
+            }
+        }
+        return res;
+    }
+}
+---------------------------------------------------------------------------------------------------------
+Time complexity=O(n) 
+Space Complexity=O(m)where m is the number of words in the input string.
+class Solution 
+{ 
+    int findLength(String s) 
+    {   
+        String str[]=s.split(" ");
+        // code here
+        int n=str.length;
+        int res=str[n-1].length();
+        return  res;
+    }
+}
+
+------------------------------------------------------------------------------------------------------------
+Time complexity=O(n) 
+Space Complexity=O(1)
+class Solution 
+{ 
+    int findLength(String s) 
+    {  
+        // code here
+        int n=s.length();
+        int res=0;
+        for(int i=n-1;i>=0;i--)
+        {
+            if(s.charAt(i)!=' ' && res>=0)
+            {
+              res++;
+            }
+            else if(s.charAt(i)==' ' && res>0)
+            {
+               break; 
+            }
+            
+        }
+        return res;
+    }
+}
