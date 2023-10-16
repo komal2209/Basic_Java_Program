@@ -1,0 +1,358 @@
+Q)Sort an array of 0s, 1s and 2s
+
+Input: 
+N = 5
+arr[]= {0 2 1 2 0}
+Output:
+0 0 1 2 2
+Explanation:
+0s 1s and 2s are segregated 
+into ascending order.
+
+ANS:-class Solution
+{
+    public static void sort012(int a[], int n)
+    {
+        // code here 
+      for(int i=0; i<n-1;i++)
+      {
+          for(int j=i+1;j<n;j++)
+          {
+              if(a[i]>a[j])
+              {
+                  int temp=a[i];
+                  a[i]=a[j];
+                  a[j]=temp;
+              }
+              else{
+                  i++;
+                  j++;
+              }
+          }
+      }
+        
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+q)Move all zeroes to end of array
+
+Input:
+N = 5
+Arr[] = {3, 5, 0, 0, 4}
+Output: 3 5 4 0 0
+Explanation: The non-zero elements
+preserve their order while the 0
+elements are moved to the right.
+
+ans:-class Solution {
+    void pushZerosToEnd(int[] arr, int n) {
+        // code here
+        
+        int count=0;
+        int temp;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]!=0)
+            {
+                 temp=arr[count];
+                arr[count]=arr[i];
+                arr[i]=temp;
+                count++;
+            }
+        }
+    }
+}
+--------------------------------------------------------------------------------------------------------------------------------------
+q)Count Odd Even
+
+Input:
+N = 5
+A[] = 1 2 3 4 5
+Output:
+3 2
+Explanation:
+There are 3 odd elements (1, 3, 5)
+and 2 even elements (2 and 4).
+
+Ans:-class Solution
+{
+    public void countOddEven(int[] arr, int n)
+    {
+        int even=0;
+        int odd=0;
+        // Code here
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]%2==0){
+                even++;
+            }
+            else{
+              odd++;
+            }
+        }
+         System.out.print(odd+" "+even);
+      System.out.println();
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------
+q)Move all negative elements to end
+
+Input : 
+N = 8
+arr[] = {1, -1, 3, 2, -7, -5, 11, 6 }
+Output : 
+1  3  2  11  6  -1  -7  -5
+
+ans:-class Solution 
+{
+    
+    public void segregateElements(int arr[], int n)
+    {
+       int j=0;
+       int temp[]=new int[n];
+       for(int i=0;i<n;i++)
+       {
+        if(arr[i]>=0)
+          temp[j++]=arr[i];
+      
+       }
+       if(j==0||n==0)
+       return;
+       for(int i=0;i<n;i++)
+       {
+           if(arr[i]<0)
+           {
+               temp[j++]=arr[i];
+           }
+       }
+       for(int i=0;i<n;i++)
+       {
+           arr[i]=temp[i];
+       }
+       
+    }
+   
+ }
+----------------------------------------------------------------------------------------------------------------------------------------------------
+q)Segregate 0s and 1s
+
+Input:
+N = 5
+arr[] = {0, 0, 1, 1, 0}
+Output: 0 0 0 1 1
+
+ans:-class Solution {
+    void segregate0and1(int[] arr, int n) {
+        // code here
+    //    if(n==1)
+      //  return n;
+        int j = 0, temp;
+        for (int i = 0; i < n; i++) {
+            if (arr[i] == 0) {
+                if (i != j) {
+                    temp = arr[i];
+                    arr[i] = arr[j];
+                    arr[j] = temp;
+                }
+                j++;
+            }
+        }
+    
+    }
+
+}
+------------------------------------------------------------------------------------------------------------------------------
+q)Count the Zeros
+
+Input:
+N = 12
+Arr[] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0}
+Output: 3
+Explanation: There are 3 0's in the given array.
+
+Ans:-int countZeroes(int arr[], int n) {
+    // code here
+    int num=0;
+    
+    for(int i=0;i<n;i++){
+        if(arr[i]==0)
+        {
+            num++;
+        }
+       
+    }
+            return num;
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------
+q)Replace all 0's with 5
+Input:
+N = 1004
+Output: 1554
+Explanation: There are two zeroes in 1004
+on replacing all zeroes with "5", the new
+number will be "1554".
+
+Ans:-class GfG {
+    int convertfive(int n) {
+        // Your code here
+        
+       int num = 0,res = 1;
+       while(n>0){
+       int a = n%10;
+       if(a==0){
+           a=5;
+       }
+       num = num + a*res;
+       res = res*10;
+       n=n/10;
+   }
+   return num; 
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+q)Check if array is sorted
+
+Input:
+N = 5
+arr[] = {10, 20, 30, 40, 50}
+Output: 1
+Explanation: The given array is sorted.
+
+ans:-class Solution {
+    boolean arraySortedOrNot(int[] arr, int n) {
+        
+            if (n == 0 || n == 1)
+            return true;
+ 
+            for (int i = 1; i < n; i++)
+            if (arr[i - 1] > arr[i])
+                return false;
+
+              return true;
+    }
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------
+q)Print alternate elements of an array
+
+Input:
+N = 4
+A[] = {1, 2, 3, 4}
+Output:
+1 3
+
+ANS:-class GfG
+{
+    public static void print(int arr[], int n)
+    {
+        // your code here
+        for(int i=0;i<n;i++)
+        {
+            if(i%2==0)
+             System.out.print(arr[i]+" ");
+       
+        }
+    }
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+q)Sum of Array Elements
+
+Input:
+n = 3
+arr[] = {3 2 1}
+Output: 6
+
+Ans:-class Get
+{
+    public static int sumElement(int arr[], int n)
+    {
+        // Your code here
+        int sum=0;
+        int i;
+        for(i=0;i<n;i++)
+        {
+            sum+=arr[i];
+        }
+        return sum;
+    }
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+q)Search an Element in an array
+
+Input:
+n = 4
+arr[] = {1,2,3,4}
+x = 3
+Output: 2
+
+Ans:-class Solution{
+        
+    static int search(int arr[], int N, int X)
+    {
+        
+        // Your code here
+        for(int i=0;i<N;i++)
+        {
+            if(arr[i]==X)
+            return i;
+        }
+        return -1;
+    }
+    
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+q)Remove duplicate elements from sorted Array
+
+Input:
+N = 5
+Array = {2, 2, 2, 2, 2}
+Output: 1
+
+Ans:-class Solution {
+    int remove_duplicate(int A[],int N){
+  
+        int res=1;
+        for(int i=1;i<N;i++)
+        {
+            if(A[i]!=A[res-1])
+            {
+            A[res]=A[i];
+            res++;
+            }
+        }
+      
+     return res;
+    }
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+q)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

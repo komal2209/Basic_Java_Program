@@ -1,0 +1,119 @@
+Find duplicates in an array
+Given an array a of size N which contains elements from 0 to N-1, you need to find all the elements occurring more than once in the given array. Return the answer in ascending order. If no such element is found, return list containing [-1]. 
+
+Example 1:
+Input:
+N = 4
+a[] = {0,3,1,2}
+Output: 
+-1
+Explanation: 
+There is no repeating element in the array. Therefore output is -1.
+
+Example 2:
+Input:
+N = 5
+a[] = {2,3,1,2,3}
+Output: 
+2 3 
+Explanation: 
+2 and 3 occur more than once in the given array.
+
+---------------------------------------------------
+Time Complexity: O(n).
+Auxiliary Space: O(n).
+
+class Solution {
+    public static ArrayList<Integer> duplicates(int arr[], int n) {
+        // code here
+        int count[]=new int[n];
+        ArrayList<Integer> duplicates =new ArrayList<Integer>();
+        for(int i=0;i<n;i++)
+        {
+          count[arr[i]]++;
+        }
+
+    for(int i=0;i<n;i++)
+    {
+    if(count[i]>1)
+    {
+        duplicates.add(i);
+    }
+   }
+if(duplicates.isEmpty())
+{
+   duplicates.add(-1); 
+}
+
+return duplicates;
+
+    }
+}
+
+-----------------------------------------------------
+Time Complexity: O(nlogn).
+Auxiliary Space: O(n).
+
+class Solution {
+    public static ArrayList<Integer> duplicates(int arr[], int n) {
+        // code here
+        ArrayList<Integer> duplicates =new ArrayList<Integer>();
+        Arrays.sort(arr);
+        for(int i=0;i<n-1;i++)
+        {
+            if(arr[i]==arr[i+1])
+            {
+                if(duplicates.contains(arr[i])==false)
+                {
+                 duplicates.add(arr[i]);
+ 
+                }
+            }
+            
+        }
+
+if(duplicates.isEmpty()) 
+{
+   duplicates.add(-1);
+}
+return duplicates;
+
+        
+    }
+}
+--------------------------------------------------------
+Time Complexity: O(nlogn).
+Auxiliary Space: O(n).
+
+class Solution {
+    public static ArrayList<Integer> duplicates(int arr[], int n) {
+        // code here
+        HashMap<Integer,Boolean> map=new HashMap<Integer,Boolean>();
+        ArrayList<Integer> set=new ArrayList<Integer>();
+        Arrays.sort(arr);
+        for(int i=0;i<n;i++)
+        {
+            
+            if(map.containsKey(arr[i]))
+            {
+                if(!set.contains(arr[i]))
+                {
+                set.add(arr[i]);
+                }
+            }
+            else
+            {
+               
+              map.put(arr[i],true);
+
+            }
+        }
+        
+        if(set.isEmpty()==true)
+        {
+        set.add(-1);
+        }
+       return set;
+        
+    }
+}
