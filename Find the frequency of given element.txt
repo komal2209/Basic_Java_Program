@@ -1,0 +1,41 @@
+Find the frequency of given element
+Input:
+N = 5
+arr[] = {2, 3, 2, 3, 5}
+
+Output:
+2  2
+3  2
+5  1
+-------------------------------------------------------
+Time Complexity=O(N)
+Space Complexity=O(N)
+
+class Solution{
+    //Function to count the frequency of all elements from 1 to N in the array.
+    public static void frequencyCount(int arr[], int N)
+    {
+        // code here
+        boolean visited[]=new boolean[N];
+        Arrays.fils(visited,false);
+        for(int i=0;i<N;i++)
+        {
+            if(visited[i]==false)
+            {
+                int count=1;
+                visited[i]=true;
+                for(int j=i+1;j<n;j++)
+                {
+                    if(arr[i]==arr[j])
+                    {
+                    visited[j]=true;
+                    count++;
+                    }
+                }
+                
+            }
+            System.out.println(arr[i] + " " + count);
+
+        }
+    }
+}
